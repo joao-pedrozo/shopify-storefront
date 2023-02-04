@@ -1,5 +1,6 @@
 import type { AppProps } from "next/app";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import "../styles/globals.css";
 
 export const client = new ApolloClient({
   uri: process.env.NEXT_PUBLIC_SHOPIFY_GRAPHQL_URL,

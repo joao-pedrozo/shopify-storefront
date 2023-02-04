@@ -51,18 +51,18 @@ export default function Home({ title }: any) {
   const [mutate, { data: teste, loading, error }] = useMutation(ADD_TO_CART);
 
   return (
-    <>
-      <b>{cartId}</b>
+    <div className="px-64 py-32">
       {data?.products.edges[0].node.variants.edges.map((product) => (
-        <div key={product.node.id}>
+        <div key={product.node.id} className="flex flex-col max-w-fit border-2">
           <img src={product?.node?.image?.url} width="250" height="250" />
-          <h1>{product.node.title}</h1>
+          <h1 className="text-center">{product.node.title}</h1>
           <input
             type="number"
             value={quantity}
             onChange={(ev) => setQuantity(Number(ev.target.value))}
           />
           <button
+            className="flex bg-gray-200"
             onClick={async () => {
               console.log(product.node.id);
 
@@ -83,11 +83,11 @@ export default function Home({ title }: any) {
               });
             }}
           >
-            comprar
+            <b>COMPRAR</b>
           </button>
         </div>
       ))}
-    </>
+    </div>
   );
 }
 
