@@ -11,6 +11,7 @@ const GET_PRODUCTS = gql(`
           title
           createdAt
           updatedAt
+          handle
           variants(first: 10) {
 						edges {
               node {
@@ -52,9 +53,12 @@ export default function Home({ title }: any) {
 
   return (
     <div className="px-64 py-32">
-      {data?.products.edges[0].node.variants.edges.map((product) => (
-        <div key={product.node.id} className="flex flex-col max-w-fit border-2">
-          <img src={product?.node?.image?.url} width="250" height="250" />
+      {data?.products.edges.map((product) => (
+        <a
+          key={product.node.id}
+          className="flex flex-col max-w-fit border-2"
+          href={`/${product.node.handle}`}
+        >
           <h1 className="text-center">{product.node.title}</h1>
           <input
             type="number"
@@ -85,7 +89,7 @@ export default function Home({ title }: any) {
           >
             <b>COMPRAR</b>
           </button>
-        </div>
+        </a>
       ))}
     </div>
   );
